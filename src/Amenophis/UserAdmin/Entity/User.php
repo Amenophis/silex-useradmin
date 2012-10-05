@@ -83,7 +83,7 @@ abstract class User implements UserInterface, \Serializable {
     public function getLastname() { return $this->lastname; }
     public function getPassword() { return $this->password; }
     public function getSalt() { return null; }
-    
+    public function getRoles(){ return $this->roles; }
     
     public function setId($id) { $this->id = $id; return $this; }
     public function setUsername($username) { $this->username = $username; return $this; }
@@ -91,7 +91,7 @@ abstract class User implements UserInterface, \Serializable {
     public function setLastname($lastname) { $this->lastname = $lastname; return $this; }
     public function setPassword($password) { $this->password = $password; return $this; }
     public function setSalt($salt) { return $this; }
-    
+    public function setRoles($roles) { $this->roles = $roles; return $this; }
     
     public function eraseCredentials() { return true; }
     

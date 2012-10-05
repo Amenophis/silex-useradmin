@@ -1,7 +1,6 @@
 {
     "name": "amenophis/silex-useradmin",
-    //"type": "library",
-    "type": "composer-installer",
+    "type": "library",
     "description": "User administration for Silex",
     "keywords": ["silex", "user", "administration"],
     "homepage": "https://github.com/Amenophis/silex-useradmin",
@@ -23,7 +22,9 @@
             "Amenophis": "src"
         }
     },
-    "extra": {
-        "class": "Amenophis\\UserAdmin\\Installer"
+    "scripts": {
+        "post-package-install": "Amenophis\\UserAdmin\\Composer::postPackageInstall",
+        "post-package-update": "Amenophis\\UserAdmin\\Composer::postPackageUpdate",
+        "pre-package-uninstall": "Amenophis\\UserAdmin\\Composer::prePackageUninstall",
     }
 }

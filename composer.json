@@ -25,6 +25,6 @@
     "scripts": {
         "post-package-install": "Amenophis\\UserAdmin\\Composer::postPackageInstall",
         "post-package-update": "Amenophis\\UserAdmin\\Composer::postPackageUpdate",
-        "pre-package-uninstall": "Amenophis\\UserAdmin\\Composer::prePackageUninstall",
+        "pre-package-uninstall": "Amenophis\\UserAdmin\\Composer::prePackageUninstall"
     }
 }

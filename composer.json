@@ -21,10 +21,5 @@
         "psr-0": {
             "Amenophis": "src"
         }
-    },
-    "scripts": {
-        "post-package-install": "Amenophis\\UserAdmin\\Composer::postPackageInstall",
-        "post-package-update": "Amenophis\\UserAdmin\\Composer::postPackageUpdate",
-        "pre-package-uninstall": "Amenophis\\UserAdmin\\Composer::prePackageUninstall"
     }
 }

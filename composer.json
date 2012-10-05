@@ -2,7 +2,7 @@
     "name": "amenophis/silex-useradmin",
     "type": "library",
     "description": "User administration for Silex",
-    "keywords": ["silex", "user, "administration"],
+    "keywords": ["silex", "user", "administration"],
     "homepage": "https://github.com/Amenophis/silex-useradmin",
     "license": "MIT",
     "authors": [

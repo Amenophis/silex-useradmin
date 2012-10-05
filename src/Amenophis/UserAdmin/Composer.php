@@ -1,26 +1,23 @@
 <?php
+
 namespace Amenophis\UserAdmin;
 
-use Composer\Installer\LibraryInstaller;
+use Composer\Script\Event;
 
-class Installer extends LibraryInstaller
+class Composer
 {
-    public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
+    public static function postPackageInstall(Event $event)
     {
-        parent::install($repo, $package);
-        var_dump($package);
         echo "install";
     }
-    
-    public function update(InstalledRepositoryInterface $repo, PackageInterface $initial, PackageInterface $target)
+
+    public static function postPackageUpdate(Event $event)
     {
-        parent::install($repo, $initial, $target);
         echo "update";
     }
     
-    public function uninstall(InstalledRepositoryInterface $repo, PackageInterface $package)
+    public static function prePackageUninstall(Event $event)
     {
-        parent::uninstall($repo, $package);
         echo "uninstall";
     }
 }

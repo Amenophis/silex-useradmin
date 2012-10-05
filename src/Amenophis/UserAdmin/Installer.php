@@ -3,7 +3,7 @@ namespace Amenophis\UserAdmin;
 
 use Composer\Installer\LibraryInstaller;
 
-class Installer extends LibraryInstaller
+class Install er extends LibraryInstaller
 {
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
     {

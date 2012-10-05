@@ -8,7 +8,7 @@ class Composer
 {
     public static function postPackageInstall(Event $event)
     {
-        echo "install";
+        echo "ins tall";
     }
 
     public static function postPackageUpdate(Event $event)

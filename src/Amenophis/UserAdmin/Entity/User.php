@@ -4,61 +4,72 @@ namespace Amenophis\UserAdmin\Entity;
 
 use \Symfony\Component\Security\Core\User\UserInterface;
 
+use Doctrine\ORM\Mapping as ORM;
+use JMS\SerializerBundle\Annotation as JMS;
+
 // foo : 5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==
 // array('ROLE_ADMIN') : a:1:{i:0;s:10:"ROLE_ADMIN";}
 
 /**
- * @Entity(repositoryClass="Scrilex\Entity\UserRepository")
- * @Table(name="user")
+ * @ORM\Entity(repositoryClass="Scrilex\Entity\UserRepository")
+ * @ORM\Table(name="user")
  */
 abstract class User implements UserInterface, \Serializable {
 
     public static $enumRoles = array(
         'ROLE_ADMIN' => 'ROLE_ADMIN',
         'ROLE_MANAGER' => 'ROLE_MANAGER',
-        'ROLE_USER' => 'ROLE_USER');
+        'ROLE_USER' => 'ROLE_USER'
+    );
     
     /**
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
-     * @Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     * 
+     * @JMS\Type("integer")
      */
     protected $id;
     
     /**
-     * @Column(type="string", length=32, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=32, unique=true, nullable=false)
+     * 
+     * @JMS\Type("string")
      */
     protected $username;
     
     /**
-     * @Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     protected $password;
     
     /**
-     * Column(type="string", length="255")
+     * @ORM\Column(type="string", length=255)
      *
      * @var string salt
      */
     protected $salt;
     
     /**
-     * @Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=false)
+     * 
+     * @JMS\Type("string")
      */
     protected $firstname;
     
     /**
-     * @Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=false)
+     * 
+     * @JMS\Type("string")
      */
     protected $lastname;
         
     /**
-     * @Column(type="array")
-     * @var type 
+     * @ORM\Column(type="array")
+     * 
+     * @JMS\Type("array")
      */
     protected $roles;
-    
-    
     
     public function __construct()
     {

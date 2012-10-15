@@ -5,7 +5,6 @@ namespace Amenophis\UserAdmin\Entity;
 use \Symfony\Component\Security\Core\User\UserInterface;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\SerializerBundle\Annotation as JMS;
 
 // foo : 5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==
 // array('ROLE_ADMIN') : a:1:{i:0;s:10:"ROLE_ADMIN";}
@@ -26,15 +25,11 @@ abstract class User implements UserInterface, \Serializable {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
-     * 
-     * @JMS\Type("integer")
      */
     protected $id;
     
     /**
      * @ORM\Column(type="string", length=32, unique=true, nullable=false)
-     * 
-     * @JMS\Type("string")
      */
     protected $username;
     
@@ -45,29 +40,21 @@ abstract class User implements UserInterface, \Serializable {
     
     /**
      * @ORM\Column(type="string", length=255)
-     *
-     * @var string salt
      */
     protected $salt;
     
     /**
      * @ORM\Column(type="string", nullable=false)
-     * 
-     * @JMS\Type("string")
      */
     protected $firstname;
     
     /**
      * @ORM\Column(type="string", nullable=false)
-     * 
-     * @JMS\Type("string")
      */
     protected $lastname;
         
     /**
      * @ORM\Column(type="array")
-     * 
-     * @JMS\Type("array")
      */
     protected $roles;
     

@@ -30,7 +30,8 @@ class AdminUser implements ControllerProviderInterface {
         ->bind('admin_user');
         
         $controllers->match('/new', function () use ($app) {
-            $form = $app['form.factory']->create(new \Amenophis\Form\Admin\UserAdd());
+            $class = $app['Amenophis']['useradmin']['form']['user']['add']['form'];
+            $form = $app['form.factory']->create(new $class());
             
             if ('POST' == $app['request']->getMethod()) {
                 $form->bind($app['request']);
@@ -39,7 +40,7 @@ class AdminUser implements ControllerProviderInterface {
                     $user = $form->getData();
                     
                     $encoder = $app['security.encoder_factory']->getEncoder($user);
-                    $password = $encoder->encodePassword('foo', $user->getSalt());
+                    $password = $encoder->encodePassword($app['Amenophis']['useradmin']['default_password'], $user->getSalt());
                     $user->setPassword($password);
                     
                     $app['db.orm.em']->persist($user);
@@ -58,7 +59,8 @@ class AdminUser implements ControllerProviderInterface {
             $user = $app['db.orm.em']->getRepository('Scrilex\Entity\User')->find($id);
             if(!$user) return $app->abort (404, 'Unknown user');
             
-            $formType = new \Amenophis\Form\Admin\UserEdit();
+            $class = $app['Amenophis']['useradmin']['form']['user']['edit']['form'];
+            $formType = new $class();
             $form = $app['form.factory']->create($formType, $user);
             if ('POST' == $app['request']->getMethod()) {
                 $form->bind($app['request']);

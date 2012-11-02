@@ -20,7 +20,7 @@ class AdminUser implements ControllerProviderInterface {
         $controllers = $app['controllers_factory'];
         
         $controllers->match('/', function (Request $request) use ($app) {
-            $users = $app['db.orm.em']->getRepository('Scrilex\Entity\User')->findAll();
+            $users = $app['db.orm.em']->getRepository($app['Amenophis']['useradmin']['user']['class'])->findAll();
 
             return $app['twig']->render('Amenophis/AdminUser/list.html.twig', array(
                 'users' => $users
@@ -30,7 +30,7 @@ class AdminUser implements ControllerProviderInterface {
         ->bind('admin_user');
         
         $controllers->match('/new', function () use ($app) {
-            $class = $app['Amenophis']['useradmin']['form']['user']['add']['form'];
+            $class = $app['Amenophis']['useradmin']['user']['form']['add'];
             $form = $app['form.factory']->create(new $class());
             
             if ('POST' == $app['request']->getMethod()) {
@@ -56,10 +56,10 @@ class AdminUser implements ControllerProviderInterface {
         ->bind('admin_user_new');
         
         $controllers->match('/{id}/edit', function ($id) use ($app) {
-            $user = $app['db.orm.em']->getRepository('Scrilex\Entity\User')->find($id);
+            $user = $app['db.orm.em']->getRepository($app['Amenophis']['useradmin']['user']['class'])->find($id);
             if(!$user) return $app->abort (404, 'Unknown user');
             
-            $class = $app['Amenophis']['useradmin']['form']['user']['edit']['form'];
+            $class = $app['Amenophis']['useradmin']['user']['form']['edit'];
             $formType = new $class();
             $form = $app['form.factory']->create($formType, $user);
             if ('POST' == $app['request']->getMethod()) {

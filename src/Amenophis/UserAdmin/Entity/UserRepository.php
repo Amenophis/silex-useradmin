@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  
 abstract class UserRepository extends EntityRepository implements UserProviderInterface
 {
-
     public function loadUserByUsername($username) {
         $user = $this->findOneBy(array('username' => strtolower($username)));
         if (!$user) {
@@ -20,14 +19,14 @@ abstract class UserRepository extends EntityRepository implements UserProviderIn
     }
 
     public function refreshUser(UserInterface $user) {
-        if (!$user instanceof \Scrilex\Entity\User) {
-            throw new \Symfony\Component\Security\Core\Exception\UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
+        $class = get_class($user);
+        if (!$this->supportsClass($class)) {
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $class));
         }
-
         return $this->loadUserByUsername($user->getUsername());
     }
 
     public function supportsClass($class) {
-        return $class === 'Scrilex\Entity\User';
+        return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
     }
 }
